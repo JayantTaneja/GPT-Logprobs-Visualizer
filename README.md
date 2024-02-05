@@ -7,7 +7,7 @@ This tool helps you to visualize what top choices the model had before finally c
 ## Usage
 #### Live Demo
 
-Head over to :
+Head over to :  [https://gpt-logprobs-visualizer.streamlit.app/](https://gpt-logprobs-visualizer.streamlit.app/)
 
 #### Running Locally
 
