@@ -12,14 +12,13 @@ st.set_page_config(page_title="GPT Logprobs Visualizer", layout="wide")
 
 
 def make_gpt_call(prompt: str, bf: int):
-    openai.api_key = api_key
-    completion = openai.ChatCompletion.create(
+    client = openai.OpenAI(api_key=api_key)
+    completion = client.chat.completions.create(
         model="gpt-3.5-turbo-0125",
         messages=[{"role": "user", "content": prompt}],
         logprobs=True,
         top_logprobs=bf,
     )
-    openai.api_key = ""
 
     return completion
 
@@ -115,7 +114,7 @@ if go:
     with st.spinner("Making API Call to GPT"):
         try:
             response = make_gpt_call(prompt, bf)
-        except openai.error.AuthenticationError:
+        except openai.AuthenticationError:
             st.error("Invalid API Key")
             st.stop()
 
